@@ -1,0 +1,108 @@
+import pandas as pd
+import numpy as np
+from matplotlib import pyplot as plt
+
+
+# Read and Clean Data
+
+pca_data = pd.read_csv(r'/Users/jingyangwenyi/Desktop/diabetes.csv')
+remove_nan = pca_data.replace('?', np.NaN)
+
+remove_zero = remove_nan.loc[remove_nan['Glucose'] != 0]
+remove_zero = remove_zero.loc[remove_zero['BloodPressure'] != 0]
+remove_zero = remove_zero.loc[remove_zero['SkinThickness'] != 0]
+remove_zero = remove_zero.loc[remove_zero['Insulin'] != 0]
+remove_zero = remove_zero.loc[remove_zero['BMI'] != 0]
+remove_zero = remove_zero.loc[remove_zero['DiabetesPedigreeFunction'] != 0]
+remove_zero = remove_zero.loc[remove_zero['Age'] != 0]
+
+remove_zero2 = remove_zero.iloc[:, :-1]
+
+data = remove_zero
+data = data.sort_values(by='Age')
+
+
+def gen_percentage_diab(data, object, window):
+    '''
+
+    :param data:  dataframe
+    :param object:  str
+    :return:  dataframe
+    '''
+    import pandas as pd
+    assert isinstance(data, pd.DataFrame)
+    assert isinstance(object, str)
+    left_range = data[object].min()
+    end_range = data[object].max()
+    freq = {}
+    while True:
+        mask = (left_range <= data[object]) & (data[object] < (left_range + window))
+        m = data[mask]
+        freq[str(left_range) + '-' + str(left_range + window-1)] = (m['Outcome'].sum()) / len(m[object])
+        left_range = left_range + window
+        if left_range > end_range:
+            break
+    zero_one_pd = pd.DataFrame(list(freq.items()), columns=[object, 'With_Diabetes'])
+    zero_one_pd['Without_Diabetes'] = 1 - zero_one_pd['With_Diabetes']
+    zero_one_pd = zero_one_pd.dropna()
+    return zero_one_pd
+
+
+def plot_diab_bar(zero_one_pd, title, object):
+    '''
+
+    :param zero_one_pd: pandas dataframe
+    :param title: str
+    :param ylabel: str
+    :param object: str
+    :return: pd
+    '''
+    from matplotlib import pyplot as plt
+    import pandas as pd
+    fname = object + '.png'
+    zero_one_pd = zero_one_pd.dropna()
+    labels = tuple(zero_one_pd[object].values)
+    label_1 = 'Diabetes -'
+    label_2 = 'Diabetes +'
+    ylabel = 'Percentage'
+    ytick = ['0', '0.2', '0.4', '0.6', '0.8', '1']
+
+    left = zero_one_pd['Without_Diabetes']
+    right = zero_one_pd['With_Diabetes']
+
+    x = np.arange(len(labels))  # the label locations
+    y = np.arange(0, 1.1, 0.2)
+
+    width = 0.4  # the width of the bars
+
+    fig, ax = plt.subplots(figsize=(100, 100))
+    rects1 = ax.bar(x - width / 2, left, width, color='#76ffbb', label=label_1)
+    rects2 = ax.bar(x + width / 2, right, width, color='#ff7676', label=label_2)
+
+    # Add some text for labels, title and custom x-axis tick labels, etc.
+
+    ax.set_ylabel(ylabel, fontsize=20)
+    ax.set_xlabel(object, fontsize=20)
+    ax.set_title(title, fontsize=20)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, fontsize=18, rotation=45)
+    ax.set_yticklabels(ytick, fontsize=18)
+    ax.set_yticks(y)
+
+    ax.legend(fontsize=20)
+    plt.box(False)
+    plt.show()
+
+
+# Generate Pd
+
+age_diab = gen_percentage_diab(data, object='Age', window=6)
+pregnancies_diab = gen_percentage_diab(data, object='Pregnancies', window=1)
+insulin_diab = gen_percentage_diab(data, object='Insulin', window=100)
+glucose_diab = gen_percentage_diab(data, object='Glucose', window=30)
+
+# Plot Pd
+plot_diab_bar(age_diab, title='Diabetes vs Age', object='Age')
+plot_diab_bar(pregnancies_diab, title='Diabetes vs Pregnancies', object='Pregnancies')
+plot_diab_bar(insulin_diab, title='Diabetes vs Insulin', object='Insulin')
+plot_diab_bar(glucose_diab, title='Diabetes vs Glucose', object='Glucose')
