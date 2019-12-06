@@ -4,7 +4,15 @@ Created on Thu Dec  5 14:48:42 2019
 
 @author: nguye
 """
-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.font_manager
+from matplotlib_venn import venn2
+#run in iPython shell or pip install matplotlib_venn into OS shell 
+from sklearn.decomposition import PCA
+import os
 def create_venn(csvfile):
     '''this function will create a venn diagram between the two classes, hypertension and diabetes
     CKD class is not chosen because there exists no instances of values of no ckd with values of

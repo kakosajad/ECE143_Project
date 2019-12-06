@@ -5,7 +5,15 @@ people who have CKD, and don't.
 Final bar graph that this code is printing is about the realationships between other diseases
 which could possibly realted with CKD
 '''
-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.font_manager
+from matplotlib_venn import venn2
+#run in iPython shell or pip install matplotlib_venn into OS shell 
+from sklearn.decomposition import PCA
+import os
 df = pd.read_csv('data3final.csv')
 
 #emove all rows which contains unknown data.

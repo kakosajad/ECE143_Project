@@ -4,7 +4,15 @@ Created on Thu Dec  5 14:49:42 2019
 
 @author: nguye
 """
-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.font_manager
+from matplotlib_venn import venn2
+#run in iPython shell or pip install matplotlib_venn into OS shell 
+from sklearn.decomposition import PCA
+import os
 def do_pca(csvfile):
     '''this function will perform PCA on the input file, CKD raw data set. it will return 
     2 PCs and a scatter plot of the projected data points. it will also return a heatmap

@@ -4,6 +4,15 @@ Created on Thu Dec  5 14:47:33 2019
 
 @author: nguye
 """
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.font_manager
+from matplotlib_venn import venn2
+#run in iPython shell or pip install matplotlib_venn into OS shell 
+from sklearn.decomposition import PCA
+import os
 
 def create_pie(csvfile,classv='ckd'):
     '''this function will create a pie chart from raw file modified with str

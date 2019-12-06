@@ -4,7 +4,15 @@ Created on Thu Dec  5 14:48:24 2019
 
 @author: nguye
 """
-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.font_manager
+from matplotlib_venn import venn2
+#run in iPython shell or pip install matplotlib_venn into OS shell 
+from sklearn.decomposition import PCA
+import os
 def create_pie2(csvfile,ckd=False):
     '''this function will create a pie chart for patients that are ckd+ and diabetes+.
     essentially, it will extract the ckd class values and then search for values where

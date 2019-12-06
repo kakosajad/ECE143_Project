@@ -4,7 +4,15 @@ Created on Thu Dec  5 14:49:23 2019
 
 @author: nguye
 """
-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.font_manager
+from matplotlib_venn import venn2
+#run in iPython shell or pip install matplotlib_venn into OS shell 
+from sklearn.decomposition import PCA
+import os
 def create_heat(csvfile,overlay='ckd',outcome='pos'):
     '''generate heatmap for given csv file. this will generate a heatmap for either the ckd
     or diabetes data set. furthermore, it will create a heatmap for the diseased+ or diseased-
