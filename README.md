@@ -1,3 +1,32 @@
+**ECE143 Project Group 5 - Chronic Kidney Disease & Diabetes**
+----
+The goal of the project is to predict whether a patient is at risk of developing chronic
+kidney disease, given certain biological information. Furthermore, we are interested in
+seeing relationships between chronic kidney disease and other diseases due to similar
+variables or factors. Based on the given data, our algorithm will 1. Assess their relative
+risk of disease progression and 2. Recommend combative measures to decrease their
+risk of disease development, if they are at risk. An example would be to have a patient
+data inputted, then have our code assess whether they are at risk, which factors are
+most likely contributing to disease progression and then propose a solution to mitigate
+disease development.
+
+**Members**
+
+ -  Alexander Nguyen
+ - Mohammad Zarei
+ - Yangwenyi Jing
+ - Donghwi Park
+ 
+ **File Structure**
+ - data/ - all raw csv files
+ - functions/ - all function .py files
+ - presentation/ - .pdf and .ppt of final presentation
+ - ECE143_Group5_Jupyter.ipynb - Jupyter notebook containing how to produce visualizations
+ - Project Proposal.pdf - .pdf of submmited project proposal
+
+ 
+ 
+
 **Data**
 ----
 Access data online
@@ -62,7 +91,7 @@ Import 3rd party modules in command line. For venn2, use pip install on Python s
 
 
 
-**Visualization**
+**Visualization & How to run code**
 -------------
 
 Download data via github
@@ -104,32 +133,32 @@ Run the following  on the diabetes data set to clean out the illogical data valu
 
     -> location: ECE143_Project/functions/create_pie.py
     -> run command: create_pie(your variable storing cleaned up CKD csv file, example above)
-    ->description: this function takes the cleaned CKD data file (strs as columns) and generates pie charts given the input
+    -> description: this function takes the cleaned CKD data file (strs as columns) and generates pie charts given the input
 
 
 Pie charts 2
 
     -> location: ECE143_Project/functions/create_pie2.py
     -> run command: create_pie2(your variable storing cleaned up CKD csv file, example above)
-    ->description: this function takes the cleaned CKD data file (strs as columns) and generates pie charts given the input. What makes this function different is that it uses the diabetes feature in conjunction with observed ckd feature
+    -> description: this function takes the cleaned CKD data file (strs as columns) and generates pie charts given the input. What makes this function different is that it uses the diabetes feature in conjunction with observed ckd feature
 
 Venn
 
     -> location: ECE143_Project/functions/create_venn.py
     -> run command: create_venn(your variable storing cleaned up CKD csv file, example above)
-    ->description: this function takes the cleaned CKD data file (strs as columns) and generates a venn diagram between hypertension counts and diabetes counts
+    -> description: this function takes the cleaned CKD data file (strs as columns) and generates a venn diagram between hypertension counts and diabetes counts
 
 Heatmap
 
     -> location: ECE143_Project/functions/create_heat.py
     -> run command: create_heat(your variable storing cleaned up diabetes csv file, example above)
-    ->description: this function takes the cleaned diabetes data file and generates heatmaps based on given input
+    -> description: this function takes the cleaned diabetes data file and generates heatmaps based on given input
 
 PCA
 
     -> location: ECE143_Project/functions/do_pca.py
     -> run command: do_pca(your variable storing cleaned up CKD csv file, example above)
-    ->description: this function takes the cleaned CKD data file (strs as columns) performs PCA to reduce dimensions for visualization and to observe clustering via scatter plots
+    -> description: this function takes the cleaned CKD data file (strs as columns) performs PCA to reduce dimensions for visualization and to observe clustering via scatter plots
 
 
 Diabetes Percentages
@@ -152,4 +181,4 @@ Diabetes Percentages
     
     plot_diab_bar(glucose_diab, title='Diabetes vs Glucose', object='Glucose')
                 
-       -> description: this function takes the cleaned diabetes data file and generates histograms with percentages between groups for age, glucose, insulin and pregnancies 
+    -> description: this function takes the cleaned diabetes data file and generates histograms with percentages between groups for age, glucose, insulin and pregnancies 
